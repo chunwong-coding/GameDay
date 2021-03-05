@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>Welcome to Home Plate</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Reset -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.5/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.5/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.5/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
+    <!-- Bootbox -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+    <!-- Google API Key-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpnKSYOM4JaWM1tqr1LroDc3tAMb_NIa0&libraries=places"></script>
+
+    <!-- Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
+    <!-- Moment.js-->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
+
+    <!-- Date Selector-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+
+    <audio autoplay>
+        <source src="assets/audio/baseball.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+
+        <div id="logo">
+            <img src="assets/images/logo.png" alt="Homeplate" class="uk-animation-scale-up">
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Our Purpose
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <p>
+                            Planning a stress free day out at the ballpark can sometimes be challenging. What’s the weather going to be like? You won't
+                            find out here...we didn't use that API. What should I eat before I go? Are there good parking
+                            spots near the stadium? Let US help YOU plan your day efficiently so you can spend more time
+                            enjoying the things that matter the most….watching your favorite baseball team on a nice summer
+                            evening.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Our Story
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <p>Our team was formed just a couple of weeks ago. We all come from various backgrounds but have
+                                worked countless
+                                <strong>moment.js</strong> hours developing an amazing application that everyone will need to use
+                                at least once in their lifetime </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    Founding Members
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <p> The original
+                                    <strong>Five Guys</strong>: Jose Lujan, Chun Wong, Paul Hoffman, Chris Hericks, Roland Shorter
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-start">
+                        <div class="col-10-lg">
+                            <div class="dateContainer">
+                                <p>Date:
+                                    <input type="text" id="datepicker">
+                                </p>
+                            </div>
+
+                            <div class="container">
+                                <h3>
+                                    <b>Games Schedule (+3 days from selected date)</b>
+                                </h3>
+                                <div class="schedule">
+                                    <table class="table table-striped text-center" id="scheduleTable">
+                                        <thead>
+                                            <tbody class="gameInformation" id="tableInfo">
+                                                <tr>
+                                                    <th id="gameDates" scope="col">Date</th>
+                                                    <th id="gameTimes" scope="col">Time</th>
+                                                    <th scope="col">Away Team</th>
+                                                    <th scope="col">Home Team</th>
+                                                    <th scope="col">Venue</th>
+                                                </tr>
+                                            </tbody>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2-lg">
+
+                            <div class="actions">
+                                <div>
+                                    <label for="map_loc">Stadium:</label>
+                                    <select id="map_loc" class="uk-select" type="text" name="map_loc">
+                                        <option value="Progressive Field"> Progressive Field - Cleveland, OH </option>
+                                        <option value="Oakland–Alameda County Coliseum"> Alameda County Coliseum - Oakland, CA </option>
+                                        <option value="Angel Stadium"> Angel Stadium - Anaheim, CA </option>
+                                        <option value="AT&T Park"> AT&T Park - San Francisco, CA </option>
+                                        <option value="Busch Stadium"> Busch Stadium - St. Louis, MS </option>
+                                        <option value="Canal Park Stadium"> Canal Park - Akron, OH </option>
+                                        <option value="Chase Field"> Chase Field - Phoenix, AZ </option>
+                                        <option value="Citi Field"> Citi Field - Queens, NY </option>
+                                        <option value="Citizens Bank Park"> Citizens Bank Park - Philadelphia, PA </option>
+                                        <option value="Comerica Park"> Comerica Park - Detroit, MI </option>
+                                        <option value="Coors Field"> Coors Field - Denver, CO </option>
+                                        <option value="Dodger Stadium"> Dodger Stadium - Los Angeles, CA </option>
+                                        <option value="Fenway Park"> Fenway Park - Boston, MA </option>
+                                        <option value="Globe Life Park in Arlington"> Globe Life Park - Arlington, TX </option>
+                                        <option value="Great American Ball Park"> Great American Ball Park - Cincinnati, OH </option>
+                                        <option value="Guaranteed Rate Field"> Guaranteed Rate Field - Chicago, IL </option>
+                                        <option value="Kauffman Stadium"> Kauffman Stadium - Kansas City, KS </option>
+                                        <option value="Marlins Park"> Marlins Park - Miami, FL </option>
+                                        <option value="Miller Park"> Miller Park - Milwaukee, WI </option>
+                                        <option value="Minute Maid Park"> Minute Maid Park - Houston, TX </option>
+                                        <option value="Nationals Park"> Nationals Park - Washington, D.C. </option>
+                                        <option value="Oriole Park at Camden Yards"> Oriole Park - Baltimore, MD </option>
+                                        <option value="Petco Park"> Petco Park - San Diego, CA </option>
+                                        <option value="PNC Park"> PNC Park - Pittsburgh, PA </option>
+                                        <option value="Rogers Centre"> Rogers Centre - Toronto, ON </option>
+                                        <option value="Safeco Field"> Safeco Field - Seattle, WA </option>
+                                        <option value="SunTrust Park"> SunTrust Park - Cumberland, GA </option>
+                                        <option value="Target Field"> Target Field - Minneapolis, MN </option>
+                                        <option value="Tropicana Field"> Tropicana Field - St. Petersburg, FL </option>
+                                        <option value="Wrigley Field"> Wrigley Field - Chicago, IL </option>
+                                        <option value="Yankee Stadium"> Yankee Stadium - Bronx, NY </option>
+                                    </select>
+                                    <div id="button2" class="button">1) Find that Stadium</div>
+                                    <div>
+                                        <label for="gmap_type">Type:</label>
+                                        <select id="gmap_type" class="uk-select">
+                                            <option value="parking">Parking</option>
+                                            <option value="atm">Atm</option>
+                                            <option value="bar">Bar</option>
+                                            <option value="cafe">Cafe</option>
+                                            <option value="restaurant">Food</option>
+                                            <option value="hospital">Medical</option>
+                                        </select>
+                                    </div>
+
+                                    <input type="hidden" id="lat" name="lat" value="41.4962" />
+                                    <input type="hidden" id="lng" name="lng" value="-81.6852" />
+                                    <div id="button1" class="button">2) Find Nearby</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row justify-content-center">
+
+                    <div class="col-12-lg" class="map-responsive">
+
+                        <div id="gmap_display"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy;Homeplate 2018
+    </footer>
+
+    <script src="assets/javascript/homeplate.js"></script>
+
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>
